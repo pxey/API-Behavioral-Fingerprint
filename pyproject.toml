@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "api-behavioral-fingerprint"
+version = "0.1.0"
+description = "Detect undocumented behavioral changes in APIs by observing real request/response traffic — distinguishes schema drift from behavior drift."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "API Behavioral Fingerprint Contributors" }]
+keywords = ["api", "monitoring", "drift-detection", "testing", "observability"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.7,<3",
+]
+
+[project.optional-dependencies]
+sdk = ["httpx>=0.27"]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "mypy>=1.9",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+abf = "abf.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/example/api-behavioral-fingerprint"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/abf"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
