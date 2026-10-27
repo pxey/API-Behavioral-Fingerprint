@@ -37,18 +37,18 @@ from .storage import InMemoryStorage, SQLiteStorage, StorageBackend
 __version__ = "0.1.0"
 
 __all__ = [
-    "Recorder",
-    "normalize_path",
-    "Observation",
-    "FieldShape",
-    "EndpointFingerprint",
-    "DriftKind",
     "DriftCategory",
+    "DriftKind",
     "DriftRecord",
-    "compare_fingerprints",
+    "EndpointFingerprint",
+    "FieldShape",
     "FingerprintingProxy",
-    "StorageBackend",
-    "SQLiteStorage",
     "InMemoryStorage",
+    "Observation",
+    "Recorder",
+    "SQLiteStorage",
+    "StorageBackend",
     "__version__",
+    "compare_fingerprints",
+    "normalize_path",
 ]

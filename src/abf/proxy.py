@@ -83,7 +83,7 @@ def _make_handler(target_base_url: str, recorder: Recorder) -> type[BaseHTTPRequ
         def do_DELETE(self) -> None:
             self._forward("DELETE")
 
-        def log_message(self, format: str, *args: object) -> None:  # noqa: A002
+        def log_message(self, format: str, *args: object) -> None:
             pass  # keep stdout clean; the recorder is the source of truth
 
     return Handler
