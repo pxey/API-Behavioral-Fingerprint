@@ -13,9 +13,8 @@ drift.
 
 from __future__ import annotations
 
-import statistics
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Any
 
@@ -27,7 +26,7 @@ def _new_id(prefix: str) -> str:
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class FieldShape(BaseModel):
@@ -79,7 +78,7 @@ class EndpointFingerprint(BaseModel):
     error_rate: float = 0.0
 
     @classmethod
-    def from_observations(cls, endpoint: str, observations: list[Observation]) -> "EndpointFingerprint":
+    def from_observations(cls, endpoint: str, observations: list[Observation]) -> EndpointFingerprint:
         n = len(observations)
         status_codes: dict[int, int] = {}
         fields: dict[str, FieldShape] = {}
@@ -180,7 +179,7 @@ class DriftRecord(BaseModel):
         to_value: Any,
         confidence: float,
         field: str | None = None,
-    ) -> "DriftRecord":
+    ) -> DriftRecord:
         category = DriftCategory.SCHEMA if kind in _SCHEMA_KINDS else DriftCategory.BEHAVIOR
         return cls(
             endpoint=endpoint,
