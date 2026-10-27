@@ -79,7 +79,7 @@ class Recorder:
         body_fields = _flatten_json_types(json_body) if json_body is not None else {}
         pagination_keys: set[str] = set()
         if isinstance(json_body, dict):
-            pagination_keys = {k for k in json_body.keys() if k.lower() in _PAGINATION_HINTS}
+            pagination_keys = {k for k in json_body if k.lower() in _PAGINATION_HINTS}
 
         obs = Observation(
             endpoint=endpoint,
