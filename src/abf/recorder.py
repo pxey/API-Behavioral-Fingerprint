@@ -104,7 +104,7 @@ class Recorder:
         json_body: Any = None
         try:
             json_body = response.json()
-        except Exception:
+        except ValueError:
             json_body = None
         headers = dict(response.headers)
         return self.record_raw(
